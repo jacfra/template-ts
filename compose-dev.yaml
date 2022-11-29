@@ -6,5 +6,5 @@ services:
     - infinity
     build:
       context: .
-      dockerfile: ./compose-dev.Dockerfile
+      dockerfile: dev.Dockerfile
     init: true
