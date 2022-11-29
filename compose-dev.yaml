@@ -5,6 +5,6 @@ services:
     - sleep
     - infinity
     build:
-      context: .
-      dockerfile: dev.Dockerfile
+      context: ./.devcontainer
+      dockerfile: ./dev.Dockerfile
     init: true
