@@ -4,10 +4,7 @@ services:
     entrypoint:
     - sleep
     - infinity
-    image: docker/dev-environments-javascript:stable-1
+    build:
+      context: .
+      dockerfile: ./compose-dev.Dockerfile
     init: true
-    volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
-
