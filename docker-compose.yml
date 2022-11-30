@@ -7,6 +7,8 @@ services:
     image: postgres:alpine
     volumes:
       - db_vol:/var/lib/postgresql/data
+    networks:
+      - express-postgres
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USERNAME}
@@ -20,6 +22,11 @@ services:
     build:
       dockerfile: ./server.Dockerfile
       context: ./server
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - express-postgres
+      - react-express
     command:
       [
         "/wait-for-it.sh",
@@ -45,6 +52,10 @@ services:
     build:
       dockerfile: ./client.Dockerfile
       context: ./client
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - react-express
     ports:
       - "${CLIENT_PORT}:${CLIENT_PORT}" # host:container
     depends_on:
@@ -67,3 +78,8 @@ services:
 volumes:
   db_vol:
   ssl_vol:
+
+
+networks:
+  react-express:
+  express-postgres:
