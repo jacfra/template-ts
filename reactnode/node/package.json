@@ -7,7 +7,7 @@
   "scripts": {
     "prod": "pm2-runtime start ecosystem.config.js --env production",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@types/express": "^4.17.14",
