@@ -5,6 +5,9 @@ on: [pull_request]
 jobs:
   gqlnode-server-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /gqlnode/react/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -13,7 +16,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: latest
-          working-directory: /gqlnode/react/
 
       - name: Build
         run: npm install
@@ -25,6 +27,9 @@ jobs:
         run: npm run test
   reactnode-client-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /reactnode/react/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,7 +38,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: latest
-          working-directory: /reactnode/react/
 
       - name: Build
         run: npm install
@@ -45,6 +49,9 @@ jobs:
         run: npm run test
   reactnode-server-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /reactnode/node/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -53,7 +60,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: latest
-          working-directory: /reactnode/node/
 
       - name: Build
         run: npm install
