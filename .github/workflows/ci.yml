@@ -15,7 +15,7 @@ jobs:
           node-version: latest
 
       - name: Set Working Directory
-        working-directory: /gqlnode/
+        working-directory: ${{GITHUB_WORKSPACE}}/gqlnode/
 
       - name: Build
         run: npm run build
@@ -34,7 +34,7 @@ jobs:
           node-version: latest
 
       - name: Set Working Directory
-        working-directory: /reactnode/react/
+        working-directory: ${{GITHUB_WORKSPACE}}/reactnode/react/
 
       - name: Build
         run: npm run build
@@ -53,7 +53,7 @@ jobs:
           node-version: latest
 
       - name: Set Working Directory
-        working-directory: /reactnode/node/
+        working-directory: ${{GITHUB_WORKSPACE}}/reactnode/node/
 
       - name: Build
         run: npm run build
