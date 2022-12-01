@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: latest
-        working-directory: /gqlnode/react/
+          working-directory: /gqlnode/react/
 
       - name: Build
         run: npm install
@@ -33,7 +33,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: latest
-        working-directory: /reactnode/react/
+          working-directory: /reactnode/react/
 
       - name: Build
         run: npm install
@@ -53,7 +53,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: latest
-        working-directory: /reactnode/node/
+          working-directory: /reactnode/node/
 
       - name: Build
         run: npm install
