@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: /gqlnode/react/
+        working-directory: /${{GITHUB_WORKSPACE}}/gqlnode/react/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: /reactnode/react/
+        working-directory: /${{GITHUB_WORKSPACE}}/reactnode/react/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: /reactnode/node/
+        working-directory: /${{GITHUB_WORKSPACE}}/reactnode/node/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
