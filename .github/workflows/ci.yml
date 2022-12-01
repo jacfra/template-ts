@@ -6,30 +6,57 @@ jobs:
   run-gqlnode-ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
         uses: actions/setup-node@v3
         with:
           node-version: latest
-      - working-directory: /gqlnode/
-      - run: npm run build
-      - run: npm test
+
+      - name: Set Working Directory
+        working-directory: /gqlnode/
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
   run-react-ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
         uses: actions/setup-node@v3
         with:
           node-version: latest
-      - working-directory: /reactnode/react/
-      - run: npm run build
-      - run: npm test
+
+      - name: Set Working Directory
+        working-directory: /reactnode/react/
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
   run-reactnode-ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
         uses: actions/setup-node@v3
         with:
           node-version: latest
-      - working-directory: /reactnode/node/
-      - run: npm run build
-      - run: npm test
+
+      - name: Set Working Directory
+        working-directory: /reactnode/node/
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
