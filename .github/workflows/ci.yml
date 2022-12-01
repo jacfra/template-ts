@@ -20,11 +20,8 @@ jobs:
       - name: Build
         run: npm install
 
-      - name: Build
-        run: npm run build
-
       - name: Test
-        run: npm run test
+        run: npm test
   reactnode-client-ci:
     runs-on: ubuntu-latest
     defaults:
@@ -42,11 +39,8 @@ jobs:
       - name: Build
         run: npm install
 
-      - name: Build
-        run: npm run build
-
       - name: Test
-        run: npm run test
+        run: npm test
   reactnode-server-ci:
     runs-on: ubuntu-latest
     defaults:
@@ -64,8 +58,5 @@ jobs:
       - name: Build
         run: npm install
 
-      - name: Build
-        run: npm run build
-
       - name: Test
-        run: npm run test
+        run: npm test

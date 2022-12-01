@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "testout",
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "types": ["node", "jest", "reflect-metadata"]
+  },
+  "include": ["test/**/*"],
+  "exclude": ["node_modules"]
+}

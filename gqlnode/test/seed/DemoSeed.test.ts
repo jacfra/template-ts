@@ -5,19 +5,27 @@ import { DemoEntity } from "../../src/entity/DemoEntity";
 import { DemoResolver, IDemoResolver } from "../../src/resolver/DemoResolver";
 import { IDemoSeed } from "../../src/seed/DemoSeed";
 import { mockContainer } from "../_setup/mockBind";
-
-beforeEach(async () => {
-  mockContainer.snapshot();
-  const demoSeed = await mockContainer.getAsync<IDemoSeed>(TYPES.DemoSeed);
-  await demoSeed.seed();
-});
-
-afterEach(() => {
-  mockContainer.restore();
-  jest.clearAllMocks();
-});
+import {
+  describe,
+  afterEach,
+  beforeEach,
+  expect,
+  jest,
+  test,
+} from "@jest/globals";
 
 describe("DemoSeed", () => {
+  beforeEach(async () => {
+    mockContainer.snapshot();
+    const demoSeed = await mockContainer.getAsync<IDemoSeed>(TYPES.DemoSeed);
+    await demoSeed.seed();
+  });
+
+  afterEach(() => {
+    mockContainer.restore();
+    jest.clearAllMocks();
+  });
+
   test(`DemoSeed.seed`, async () => {
     const demoSeed = await mockContainer.getAsync<IDemoSeed>(TYPES.DemoSeed);
     await demoSeed.seed();
