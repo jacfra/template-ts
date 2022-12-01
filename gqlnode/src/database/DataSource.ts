@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
 import { DemoEntity } from "../entity/DemoEntity";
-import { DemoMigration } from "../migration/DemoMigration";
+import { this1669816533849 } from "../migration/1669816533849-this";
 import { Log } from "../utility/Log/Logger";
 
 export let databaseSource = new DataSource({
@@ -10,7 +10,7 @@ export let databaseSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [DemoEntity],
-  migrations: [DemoMigration],
+  migrations: [this1669816533849],
   type: "postgres",
   logger: Log,
   dropSchema: false,

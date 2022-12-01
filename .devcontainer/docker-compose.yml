@@ -1,17 +1,90 @@
-version: '3'
+name: template-ts
+version: "3.8"
 
 services:
-  app:
+  postgres:
+    container_name: postgres
+    image: postgres:alpine
+    volumes:
+      - postgres_vol:/var/lib/postgresql/data
+    networks:
+      - gqlnode_postgres
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - PGPORT=${DB_PORT}
+    ports:
+      - "${DB_PORT}:${DB_PORT}" # host:container
+    restart: on-failure
+  gqlnode:
+    container_name: gqlnode
+    env_file: .env
+    build:
+      context: ../gqlnode
+      dockerfile: gqlnode.Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - gqlnode_postgres
+      - reactnode_gqlnode
+    command:
+      [
+        "/app/wait-for-it.sh",
+        "postgres:${DB_PORT}",
+        "--",
+        "pm2-runtime",
+        "start",
+        "/app/ecosystem.config.js",
+        "--env",
+        "production"
+      ]
+    depends_on:
+      - postgres
+    ports:
+      # host:container
+      - "${GQLNODE_HTTP_PORT}:${GQLNODE_HTTP_PORT}"
+      - "${GQLNODE_HTTPS_PORT}:${GQLNODE_HTTPS_PORT}"
+  reactnode:
+    container_name: reactnode
+    env_file: .env
+    build:
+      context: ../reactnode
+      dockerfile: reactnode.Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - reactnode_gqlnode
+    command:
+      [
+        "/app/wait-for-it.sh",
+        "gqlnode:${GQLNODE_HTTP_PORT}",
+        "--",
+        "pm2-runtime",
+        "start",
+        "/app/ecosystem.config.js",
+        "--env",
+        "production"
+      ]
+    ports:
+      # host:container
+      - "${REACTNODE_HTTP_PORT}:${REACTNODE_HTTP_PORT}"
+      - "${REACTNODE_HTTPS_PORT}:${REACTNODE_HTTPS_PORT}"
+    depends_on:
+      - gqlnode
+  devenv:
     build:
       context: .
-      dockerfile: Dockerfile
-
+      dockerfile: devenv.Dockerfile
+    env_file: .env
+    networks:
+      - gqlnode_postgres
+      - reactnode_gqlnode
     volumes:
       # Forwards the local Docker socket to the container.
       - /var/run/docker.sock:/var/run/docker-host.sock
       # Update this to wherever you want VS Code to mount the folder of your project
       - ..:/workspace:cached
-
     # Overrides default command so things don't shut down after the process ends.
     entrypoint: /usr/local/share/docker-init.sh
     command: sleep infinity
@@ -26,3 +99,12 @@ services:
     user: vscode
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
     # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+
+volumes:
+  postgres_vol:
+
+
+networks:
+  gqlnode_postgres:
+  reactnode_gqlnode:

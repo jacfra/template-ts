@@ -1,0 +1,35 @@
+name: ci
+
+on: [pull_request]
+
+jobs:
+  run-gqlnode-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - working-directory: /gqlnode/
+      - run: npm run build
+      - run: npm test
+  run-react-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - working-directory: /reactnode/react/
+      - run: npm run build
+      - run: npm test
+  run-reactnode-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - working-directory: /reactnode/node/
+      - run: npm run build
+      - run: npm test
