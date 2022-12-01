@@ -5,6 +5,9 @@ on: [pull_request]
 jobs:
   run-gqlnode-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /gqlnode/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -14,8 +17,8 @@ jobs:
         with:
           node-version: latest
 
-      - name: Set Working Directory
-        working-directory: ${{GITHUB_WORKSPACE}}/gqlnode/
+      - name: Build
+        run: npm install
 
       - name: Build
         run: npm run build
@@ -24,6 +27,9 @@ jobs:
         run: npm run test
   run-react-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /reactnode/react/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,8 +39,8 @@ jobs:
         with:
           node-version: latest
 
-      - name: Set Working Directory
-        working-directory: ${{GITHUB_WORKSPACE}}/reactnode/react/
+      - name: Build
+        run: npm install
 
       - name: Build
         run: npm run build
@@ -43,6 +49,9 @@ jobs:
         run: npm run test
   run-reactnode-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /reactnode/node/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -52,8 +61,8 @@ jobs:
         with:
           node-version: latest
 
-      - name: Set Working Directory
-        working-directory: ${{GITHUB_WORKSPACE}}/reactnode/node/
+      - name: Build
+        run: npm install
 
       - name: Build
         run: npm run build
