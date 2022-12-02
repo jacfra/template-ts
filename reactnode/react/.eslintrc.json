@@ -1,11 +1,38 @@
 {
-  "plugins": [
-    "react-app",
-    "react-app/jest",
-    "prettier"
-  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+    "no-console": "error",
+    "react/prop-types": "off"
+  },
   "extends": [
-    "react-app",
-    "plugin:prettier/recommended"
-  ]
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "root": true,
+  "plugins": [
+    "react",
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
 }

@@ -1,8 +1,8 @@
 import "reflect-metadata";
-import { IDataSource } from "../../src/database/DatabaseConnection";
-import { TYPES } from "../../src/dependency-injection/types";
-import { DemoEntity } from "../../src/entity/DemoEntity";
-import { IDemoSeed } from "../../src/seed/DemoSeed";
+import { IDataSource } from "../../database/DatabaseConnection";
+import { TYPES } from "../../dependency-injection/types";
+import { DemoEntity } from "../../entity/DemoEntity";
+import { IDemoSeed } from "../../seed/DemoSeed";
 import { mockContainer } from "../_setup/mockBind";
 import {
   describe,

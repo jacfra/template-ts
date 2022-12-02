@@ -1,12 +1,12 @@
 {
-  "name": "template.server",
+  "name": "reactnode.node",
   "version": "0.0.0",
   "author": "jacfra <95544241+jacfra@users.noreply.github.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
     "prod": "pm2-runtime start ecosystem.config.js --env production",
-    "build": "tsc",
+    "build": "tsc -p deploy.tsconfig.json",
     "test": "jest --passWithNoTests",
     "lint": "eslint ."
   },
@@ -45,14 +45,8 @@
     "transform": {
       "^.+\\.ts?$": "ts-jest"
     },
-    "testRegex": "(\\.|)(test|spec)\\.[jt]sx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src"
+    "testMatch": [
+      "<rootDir>/src/**/*.test.{js,jsx,ts,tsx}"
     ]
   }
 }

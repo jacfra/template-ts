@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { DemoEntity } from "../../src/entity/DemoEntity";
+import { DemoEntity } from "../../entity/DemoEntity";
 
 export const testDatabaseSource = new DataSource({
   entities: [DemoEntity],

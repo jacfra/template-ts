@@ -3,7 +3,7 @@ name: ci
 on: [push]
 
 jobs:
-  gqlnode-server-ci:
+  gqlnode-node:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -17,12 +17,15 @@ jobs:
         with:
           node-version: latest
 
-      - name: Build
+      - name: Instal Dependencies
         run: npm install
+
+      - name: Instal Dependencies
+        run: npm run lint
 
       - name: Test
         run: npm test
-  reactnode-client-ci:
+  reactnode-react:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -36,12 +39,15 @@ jobs:
         with:
           node-version: latest
 
-      - name: Build
+      - name: Instal Dependencies
         run: npm install
+
+      - name: Instal Dependencies
+        run: npm run lint
 
       - name: Test
         run: npm test
-  reactnode-server-ci:
+  reactnode-node:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -55,8 +61,11 @@ jobs:
         with:
           node-version: latest
 
-      - name: Build
+      - name: Instal Dependencies
         run: npm install
+
+      - name: Instal Dependencies
+        run: npm run lint
 
       - name: Test
         run: npm test

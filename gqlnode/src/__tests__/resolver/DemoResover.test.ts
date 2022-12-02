@@ -1,7 +1,7 @@
 import "reflect-metadata";
-import { TYPES } from "../../src/dependency-injection/types";
-import { IDemoSeed } from "../../src/seed/DemoSeed";
-import { IDemoService } from "../../src/service/DemoService";
+import { TYPES } from "../../dependency-injection/types";
+import { DemoResolver, IDemoResolver } from "../../resolver/DemoResolver";
+import { IDemoSeed } from "../../seed/DemoSeed";
 import { mockContainer } from "../_setup/mockBind";
 import {
   describe,
@@ -12,7 +12,7 @@ import {
   test,
 } from "@jest/globals";
 
-describe("DemoService", () => {
+describe("DemoResolver", () => {
   beforeEach(async () => {
     mockContainer.snapshot();
     const demoSeed = await mockContainer.getAsync<IDemoSeed>(TYPES.DemoSeed);
@@ -24,12 +24,12 @@ describe("DemoService", () => {
     jest.clearAllMocks();
   });
 
-  test(`DemoService.demo`, async () => {
-    const demoService = await mockContainer.getAsync<IDemoService>(
-      TYPES.DemoService
+  test(`DemoResolver.demo`, async () => {
+    const demoResolver = await mockContainer.getAsync<IDemoResolver>(
+      DemoResolver
     );
 
-    const results = await demoService.demo();
+    const results = await demoResolver.demo();
 
     const expected = { value: "Hello, World!" };
 

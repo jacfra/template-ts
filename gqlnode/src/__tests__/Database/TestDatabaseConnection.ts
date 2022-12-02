@@ -1,4 +1,4 @@
-import { IDataSource } from "../../src/database/DatabaseConnection";
+import { IDataSource } from "../../database/DatabaseConnection";
 import { testDatabaseSource } from "./TestDataSource";
 
 export const initializeTestDataSource = async (): Promise<IDataSource> => {

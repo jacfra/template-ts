@@ -1,7 +1,7 @@
-import { IDataSource } from "../../src/database/DatabaseConnection";
+import { IDataSource } from "../../database/DatabaseConnection";
 import { initializeTestDataSource } from "../Database/TestDatabaseConnection";
-import { container } from "../../src/dependency-injection/bind";
-import { TYPES } from "../../src/dependency-injection/types";
+import { container } from "../../dependency-injection/bind";
+import { TYPES } from "../../dependency-injection/types";
 
 container.snapshot();
 const mockContainer = container;

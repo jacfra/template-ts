@@ -9,7 +9,7 @@
     "start": "run-s clean build serve",
     "clean": "run-s clean:*",
     "clean:dist": "rm -rf dist",
-    "build": "tsc",
+    "build": "tsc -p deploy.tsconfig.json",
     "serve": "node dist/app.js",
     "test": "run-s test:*",
     "test:jest": "jest --runInBand",
@@ -52,14 +52,8 @@
     "transform": {
       "^.+\\.ts?$": "ts-jest"
     },
-    "testRegex": "(\\.|)(test|spec)\\.[jt]sx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src"
+    "testMatch": [
+      "<rootDir>/src/**/*.test.{js,jsx,ts,tsx}"
     ]
   }
 }
