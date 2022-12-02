@@ -2,7 +2,6 @@ import "reflect-metadata";
 import { IDataSource } from "../../src/database/DatabaseConnection";
 import { TYPES } from "../../src/dependency-injection/types";
 import { DemoEntity } from "../../src/entity/DemoEntity";
-import { DemoResolver, IDemoResolver } from "../../src/resolver/DemoResolver";
 import { IDemoSeed } from "../../src/seed/DemoSeed";
 import { mockContainer } from "../_setup/mockBind";
 import {

@@ -12,7 +12,8 @@ import { TYPES } from "./types";
 
 const container = new Container();
 
-(async () => {
+// eslint-disable-next-line @typescript-eslint/require-await
+void (async () => {
   // utility
   container.bind<ILogger>(TYPES.Logger).toConstantValue(Log);
 

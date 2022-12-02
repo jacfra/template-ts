@@ -4,11 +4,12 @@ version: "3.8"
 services:
   postgres:
     container_name: postgres
-    image: postgres:alpine
+    image: postgres:15-alpine
     volumes:
       - postgres_vol:/var/lib/postgresql/data
     networks:
       - gqlnode_postgres
+      - pgadmin_postgres
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USERNAME}
@@ -17,6 +18,21 @@ services:
     ports:
       - "${DB_PORT}:${DB_PORT}" # host:container
     restart: on-failure
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    networks:
+      - pgadmin_postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "${PGADMIN_PORT}:80"
+    depends_on:
+      - postgres
+    volumes:
+      - pg_admin_vol:/var/lib/pgadmin
   gqlnode:
     container_name: gqlnode
     env_file: .env
@@ -103,8 +119,10 @@ services:
 
 volumes:
   postgres_vol:
+  pg_admin_vol:
 
 
 networks:
   gqlnode_postgres:
   reactnode_gqlnode:
+  pgadmin_postgres:

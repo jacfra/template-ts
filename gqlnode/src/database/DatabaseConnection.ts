@@ -11,7 +11,7 @@ import {
 import { databaseSource } from "./DataSource";
 
 export interface IDataSource {
-  createQueryBuilder(queryRunner?: QueryRunner): SelectQueryBuilder<any>;
+  createQueryBuilder(queryRunner?: QueryRunner): SelectQueryBuilder<unknown>;
   createQueryRunner(mode?: ReplicationMode): QueryRunner;
   getRepository<Entity extends ObjectLiteral>(
     target: EntityTarget<Entity>

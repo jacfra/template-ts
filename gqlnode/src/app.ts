@@ -6,13 +6,14 @@ import { container } from "./dependency-injection/bind";
 import { DemoResolver } from "./resolver/DemoResolver";
 import { IDemoSeed } from "./seed/DemoSeed";
 import { TYPES } from "./dependency-injection/types";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { NextFunction, Response, Request } from "express";
 import * as http from "http";
-import * as https from "https";
-import * as fs from "fs";
-import * as path from "path";
+// import * as https from "https";
+// import * as fs from "fs";
+// import * as path from "path";
 
-(async () => {
+void (async () => {
   try {
     const demoSeed = await container.getAsync<IDemoSeed>(TYPES.DemoSeed);
     await demoSeed.seed();
@@ -35,20 +36,20 @@ import * as path from "path";
     // });
 
     // app.use(express.static("public"));
-    let schema;
 
-    schema = await buildSchema({
+    const schema = await buildSchema({
       resolvers: [DemoResolver],
       container,
     });
 
-    app.use(
-      "/graphql",
-      graphqlHTTP({
-        schema,
-        graphiql: true,
-      })
-    );
+    const options = {
+      schema,
+      graphiql: true,
+    };
+
+    // eslint is yakking about an misused promise (?)
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    app.use("/graphql", graphqlHTTP(options));
 
     // const SERVER_KEY_PATH = path.join(__dirname, "/cert/domain.key");
     // const SERVER_CERT_PATH = path.join(__dirname, "/cert/domain.crt");

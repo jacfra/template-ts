@@ -1,0 +1,15 @@
+{
+    "deno.enable": false,
+    "[typescript]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.workingDirectories": [
+        "./gqlnode",
+        "./reactnode/node",
+        "./reactnode/react"
+    ]
+}

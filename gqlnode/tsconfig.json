@@ -16,9 +16,13 @@
     ]
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "jest.config.js",
+    "ecosystem.config.js",
+    ".eslint.js"
   ]
 }

@@ -1,12 +1,13 @@
 import "reflect-metadata";
 import * as express from "express";
-import * as https from "https";
+// import * as https from "https";
 import * as http from "http";
-import { Response, Request, NextFunction } from "express";
-import * as fs from "fs";
+import { Response, Request /*NextFunction*/ } from "express";
+// import * as fs from "fs";
 import * as path from "path";
 
-(async () => {
+// eslint-disable-next-line @typescript-eslint/require-await
+void (async () => {
   try {
     const app = express();
 
