@@ -33,6 +33,8 @@ COPY /react/package.json /
 COPY /react/package-lock.json /
 COPY /react/tsconfig.json /
 COPY /react/src /src
+COPY /react/config /config
+COPY /react/scripts /scripts
 COPY /react/public /public
 
 # install dependencies
@@ -52,6 +54,7 @@ WORKDIR /
 COPY /node/package.json /
 COPY /node/package-lock.json /
 COPY /node/tsconfig.json /
+COPY /node/deploy.tsconfig.json /
 COPY /node/src /src
 
 # install dependencies

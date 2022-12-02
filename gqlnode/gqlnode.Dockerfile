@@ -31,6 +31,7 @@ WORKDIR /
 COPY package.json /
 COPY package-lock.json /
 COPY tsconfig.json /
+COPY deploy.tsconfig.json /
 COPY /src /src
 
 # install and build
