@@ -54,7 +54,7 @@ COPY --from=build /node_modules /app/node_modules/
 # COPY --from=ssl ./cert/ /app/dist/cert/
 
 # Script to wait for database to come online
-COPY wait-for-it.sh /app/
+COPY ./wait-for-it.sh /app/
 
 # just enables wait-for-it.sh
 # the actual script is run in docker compose

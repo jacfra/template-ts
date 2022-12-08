@@ -1,6 +1,6 @@
 {
 	"name": "template-ts",
-	"dockerComposeFile": "docker-compose.yml",
+	"dockerComposeFile": "devenv.docker-compose.yml",
 	"service": "devenv",
 	"workspaceFolder": "/workspace",
 	// Use this environment variable if you need to bind mount your local source code into a new container.

@@ -19,7 +19,7 @@ services:
       - "${DB_PORT}:${DB_PORT}" # host:container
     restart: on-failure
   pgadmin:
-    container_name: pgadmin4
+    container_name: pgadmin
     image: dpage/pgadmin4
     restart: always
     networks:
@@ -37,7 +37,7 @@ services:
     container_name: gqlnode
     env_file: .env
     build:
-      context: ../gqlnode
+      context: ./gqlnode
       dockerfile: gqlnode.Dockerfile
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -65,7 +65,7 @@ services:
     container_name: reactnode
     env_file: .env
     build:
-      context: ../reactnode
+      context: ./reactnode
       dockerfile: reactnode.Dockerfile
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -88,22 +88,6 @@ services:
       - "${REACTNODE_HTTPS_PORT}:${REACTNODE_HTTPS_PORT}"
     depends_on:
       - gqlnode
-  devenv:
-    build:
-      context: .
-      dockerfile: devenv.Dockerfile
-    env_file: .env
-    networks:
-      - gqlnode_postgres
-      - reactnode_gqlnode
-    volumes:
-      # Forwards the local Docker socket to the container.
-      - /var/run/docker.sock:/var/run/docker-host.sock
-      # Update this to wherever you want VS Code to mount the folder of your project
-      - ..:/workspace:cached
-    # Overrides default command so things don't shut down after the process ends.
-    entrypoint: /usr/local/share/docker-init.sh
-    command: sleep infinity
 
     # Uncomment the next four lines if you will use a ptrace-based debuggers like C++, Go, and Rust.
     # cap_add:
