@@ -1,6 +1,15 @@
 {
 	"name": "template-ts",
-	"image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:16-bullseye",
+	"build": {
+		"context": ".",
+		"dockerfile": "./Dockerfile",
+		"args": {
+			"PUID": "1000",
+			"PGID": "1000",
+			"TZ": "America/Chicago",
+			"LOCAL": "en_US.UTF-8"
+		}
+	},
 	"extensions": [
 		// TypeScript
 		"dbaeumer.vscode-eslint",
