@@ -28,7 +28,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
-      - "${PGADMIN_PORT}:80"
+      - "${PGADMIN_PORT}:${PGADMIN_PORT}"
     depends_on:
       - postgres
     volumes:
@@ -36,6 +36,7 @@ services:
   gqlnode:
     container_name: gqlnode
     env_file: .env
+    restart: always
     build:
       context: ./gqlnode
       dockerfile: gqlnode.Dockerfile
@@ -49,20 +50,17 @@ services:
         "/app/wait-for-it.sh",
         "postgres:${DB_PORT}",
         "--",
-        "pm2-runtime",
-        "start",
-        "/app/ecosystem.config.js",
-        "--env",
-        "production"
+        "node",
+        "/app/dist/app.js"
       ]
     depends_on:
       - postgres
     ports:
       # host:container
-      - "${GQLNODE_HTTP_PORT}:${GQLNODE_HTTP_PORT}"
-      - "${GQLNODE_HTTPS_PORT}:${GQLNODE_HTTPS_PORT}"
+      - "${GQLNODE_PORT}:${GQLNODE_PORT}"
   reactnode:
     container_name: reactnode
+    restart: always
     env_file: .env
     build:
       context: ./reactnode
@@ -74,18 +72,14 @@ services:
     command:
       [
         "/app/wait-for-it.sh",
-        "gqlnode:${GQLNODE_HTTP_PORT}",
+        "gqlnode:${GQLNODE_PORT}",
         "--",
-        "pm2-runtime",
-        "start",
-        "/app/ecosystem.config.js",
-        "--env",
-        "production"
+        "node",
+        "/app/dist/app.js"
       ]
     ports:
       # host:container
-      - "${REACTNODE_HTTP_PORT}:${REACTNODE_HTTP_PORT}"
-      - "${REACTNODE_HTTPS_PORT}:${REACTNODE_HTTPS_PORT}"
+      - "${REACTNODE_PORT}:${REACTNODE_PORT}"
     depends_on:
       - gqlnode
 

@@ -5,7 +5,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "prod": "pm2-runtime start ecosystem.config.js --env production",
     "start": "run-s clean build serve",
     "clean": "run-s clean:*",
     "clean:dist": "rm -rf dist",

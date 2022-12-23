@@ -1,6 +1,0 @@
-npm i -D 
-  @graphql-codegen/cli 
-  @graphql-codegen/typed-document-node
-  @graphql-codegen/typescript 
-  @graphql-codegen/typescript-operations 
-  @graphql-typed-document-node/core

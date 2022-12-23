@@ -5,7 +5,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "prod": "pm2-runtime start ecosystem.config.js --env production",
     "build": "tsc -p deploy.tsconfig.json",
     "test": "jest --passWithNoTests",
     "lint": "eslint ."

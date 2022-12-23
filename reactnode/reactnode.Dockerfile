@@ -30,7 +30,7 @@ WORKDIR /
 
 # copy package.json
 COPY /react/package.json /
-COPY /react/package-lock.json /
+COPY /react/yarn.lock /
 COPY /react/tsconfig.json /
 COPY /react/src /src
 COPY /react/config /config
@@ -58,10 +58,10 @@ COPY /node/deploy.tsconfig.json /
 COPY /node/src /src
 
 # install dependencies
-RUN npm install
+RUN yarn install --offline
 
 # build
-RUN npm run build
+RUN yarn build
 
 
 ######################
@@ -84,9 +84,3 @@ COPY /node/wait-for-it.sh /app/
 # just enables wait-for-it.sh
 # the actual script is run in docker compose
 RUN chmod +x /app/wait-for-it.sh
-
-# pm2 for production process management
-RUN npm -g add pm2
-
-# config for running pm2
-COPY /node/ecosystem.config.js /app/

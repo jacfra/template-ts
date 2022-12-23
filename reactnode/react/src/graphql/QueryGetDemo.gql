@@ -1,0 +1,6 @@
+query getDemo {
+  demo {
+    id
+    value
+  }
+}
