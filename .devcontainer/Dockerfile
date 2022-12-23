@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-# ref "https://github.com/Ealenn/codespaces-typescript"
+# ref https://github.com/Ealenn/codespaces-typescript
 
 # ------------------------------
 # Configuration
@@ -48,7 +48,6 @@ RUN locale-gen $LOCAL && update-locale LANG=$LOCAL
 # Bash | Starship
 RUN apt install zsh -y
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-RUN curl -sS https://starship.rs/install.sh | sh -s - --yes
 RUN rm /bin/sh && ln -s /bin/zsh /bin/sh
 
 # ------------------------------
@@ -94,8 +93,7 @@ RUN useradd -u ${PUID} -U -d ${HOME} -s /bin/zsh ${USER} \
     && usermod -o -u ${PGID} ${USER} \
     && usermod -aG sudo ${USER} \
     && echo ${USER}:${USER} | chpasswd \
-    && echo root:root | chpasswd \
-    && mkdir -p ${HOME} $HOME/.vim/backup -p $HOME/.vim/swap -p $HOME/.vim/undo
+    && echo root:root | chpasswd
 
 # ------------------------------
 # User Permissions
@@ -113,7 +111,6 @@ RUN addgroup wsl \
 # User Configuration
 # ------------------------------
 COPY home/ ${HOME}/
-COPY etc /etc
 RUN chown -R ${PUID}:${PGID} $HOME
 RUN chown -R ${PUID}:${PGID} /usr/local/nvm
 
