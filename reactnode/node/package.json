@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc -p deploy.tsconfig.json",
     "test": "jest --passWithNoTests",
-    "lint": "eslint ."
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@types/express": "^4.17.14",

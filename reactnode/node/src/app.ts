@@ -14,6 +14,7 @@ void (async () => {
     });
 
     const staticFilePath = path.join(__dirname, "/public");
+    
     app.use(express.static(staticFilePath));
 
     const httpServer = http.createServer(app);

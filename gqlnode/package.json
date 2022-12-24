@@ -13,7 +13,7 @@
     "test": "run-s test:*",
     "test:jest": "jest --runInBand",
     "typeorm": "typeorm-ts-node-esm",
-    "lint": "eslint ."
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@jest/globals": "^29.3.1",

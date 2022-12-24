@@ -34,5 +34,9 @@
       "pragma": "React",
       "version": "detect"
     }
-  }
+  },
+  "ignorePatterns": [
+    "src/generated/*",
+    "codegen.ts"
+  ]
 }
