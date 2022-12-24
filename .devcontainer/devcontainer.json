@@ -1,36 +1,35 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
 	"name": "template-ts",
-	"build": {
-		"context": ".",
-		"dockerfile": "./Dockerfile",
-		"args": {
-			"PUID": "1000",
-			"PGID": "1000",
-			"TZ": "America/Chicago",
-			"LOCAL": "en_US.UTF-8"
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:16",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"dockerDashComposeVersion": "v2",
+			"moby": false
+		},
+		"ghcr.io/devcontainers/features/git:1": {}
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "yarn install",
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				// TypeScript
+				"dbaeumer.vscode-eslint",
+				"oouo-diogo-perdigao.docthis",
+				// Files
+				"yzhang.markdown-all-in-one",
+				// Docker
+				"ms-azuretools.vscode-docker"
+			]
 		}
 	},
-	"extensions": [
-		// TypeScript
-		"dbaeumer.vscode-eslint",
-		"oouo-diogo-perdigao.docthis",
-		// Files
-		"yzhang.markdown-all-in-one",
-		// Docker
-		"ms-azuretools.vscode-docker"
-	],
-	"settings": {
-		"eslint.alwaysShowStatus": true
-	},
-	"forwardPorts": [
-		8080,
-		8081,
-		8082,
-		8083,
-		8084
-	],
-	"postCreateCommand": "npm ci",
-	"mounts": [
-		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-	]
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 }
