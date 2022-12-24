@@ -58,10 +58,10 @@ COPY /node/deploy.tsconfig.json /
 COPY /node/src /src
 
 # install dependencies
-RUN yarn install --offline
+RUN npm install
 
 # build
-RUN yarn build
+RUN npm run build
 
 
 ######################

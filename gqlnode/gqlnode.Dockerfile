@@ -16,8 +16,8 @@ COPY deploy.tsconfig.json /
 COPY /src /src
 
 # install and build
-RUN yarn install --offline
-RUN yarn build
+RUN npm install
+RUN npm run build
 
 ######################
 #### deploy stage ####
